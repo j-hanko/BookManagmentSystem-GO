@@ -1,7 +1,8 @@
 package models
 
 import (
-	"github.com/j-hanko/BookManagmentSystem-GO/pkg/config"
+	"BookManagmentSystem-GO/pkg/config"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -26,19 +27,19 @@ func (b *Book) CreateBook() *Book {
 	return b
 }
 
-func getAllBooks() []Book {
+func GetAllBooks() []Book {
 	var Books []Book
 	db.Find(&Books)
 	return Books
 }
 
-func getBookById(Id int64) (*Book, *gorm.DB) {
+func GetBookById(Id int64) (*Book, *gorm.DB) {
 	var getBook Book
 	db := db.Where("id = ?", Id).Find(&getBook)
 	return &getBook, db
 }
 
-func deleteBook(Id int64) Book {
+func DeleteBook(Id int64) Book {
 	var book Book
 	db.Where("id = ?", Id).Delete(&book)
 	return book
